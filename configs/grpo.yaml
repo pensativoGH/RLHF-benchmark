@@ -1,0 +1,53 @@
+seed: 42
+
+model:
+  name: Qwen/Qwen2-0.5B
+  lora_rank: 16
+  lora_alpha: 32
+  lora_target_modules:
+    - q_proj
+    - v_proj
+  lora_dropout: 0.05
+
+grpo:
+  learning_rate: 1.0e-5
+  group_size: 4  # Number of responses sampled per prompt
+  beta: 0.1  # Regularization coefficient (for optional KL penalty)
+  use_kl_penalty: false  # Reference-free by default
+  clip_range: 0.2  # Policy gradient clip range
+  normalize_rewards: true  # Normalize rewards within group
+
+training:
+  batch_size: 1  # Prompts per batch (each generates group_size responses)
+  gradient_accumulation_steps: 8
+  max_seq_length: 256
+  device: mps
+  gradient_checkpointing: false  # Disabled for faster batched generation
+  epochs: 1
+  warmup_ratio: 0.1
+  weight_decay: 0.01
+  max_grad_norm: 1.0
+
+generation:
+  max_new_tokens: 64
+  temperature: 0.7
+  top_p: 0.9
+  do_sample: true
+
+data:
+  dataset: Anthropic/hh-rlhf
+  num_samples: 2000  # Same as PPO for fair comparison
+  train_split: 0.9
+  val_split: 0.1
+  min_length: 10
+  max_length: 256
+
+logging:
+  log_every_n_steps: 10
+  eval_every_n_steps: 100
+  save_every_n_steps: 200
+
+output:
+  checkpoint_dir: checkpoints/grpo_model
+  results_dir: results/m4_grpo
+  reward_model_path: checkpoints/reward_model/best

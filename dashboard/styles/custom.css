@@ -1,0 +1,219 @@
+/* RLHF Dashboard Custom Styles */
+
+/* Color scheme */
+:root {
+    --primary: #6366f1;
+    --secondary: #8b5cf6;
+    --accent: #ec4899;
+    --success: #10b981;
+    --warning: #f59e0b;
+    --danger: #ef4444;
+    --base-color: #6366f1;
+    --dpo-color: #f59e0b;
+    --ppo-color: #10b981;
+    --grpo-color: #ec4899;
+}
+
+/* Main container */
+.main .block-container {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+/* Metric cards */
+[data-testid="stMetricValue"] {
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+[data-testid="stMetricDelta"] {
+    font-size: 0.9rem;
+}
+
+/* Response cards */
+.response-card {
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 16px;
+    margin: 8px 0;
+    background-color: #fafafa;
+    transition: box-shadow 0.2s ease;
+}
+
+.response-card:hover {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.response-card.winner {
+    border: 3px solid var(--success);
+    background-color: #f0fdf4;
+}
+
+/* Model badges */
+.model-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 16px;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.model-badge.base {
+    background-color: #e0e7ff;
+    color: #3730a3;
+}
+
+.model-badge.dpo {
+    background-color: #fef3c7;
+    color: #92400e;
+}
+
+.model-badge.ppo {
+    background-color: #d1fae5;
+    color: #065f46;
+}
+
+.model-badge.grpo {
+    background-color: #fce7f3;
+    color: #9d174d;
+}
+
+/* Prompt viewer */
+.prompt-viewer {
+    background-color: #f8fafc;
+    padding: 12px;
+    border-radius: 8px;
+    border-left: 4px solid var(--primary);
+    font-family: monospace;
+    white-space: pre-wrap;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+/* KPI card styling */
+.kpi-card {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 12px;
+    padding: 20px;
+    color: white;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.kpi-card h3 {
+    margin: 0;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    opacity: 0.9;
+}
+
+.kpi-card .value {
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 8px 0;
+}
+
+.kpi-card .delta {
+    font-size: 0.875rem;
+    opacity: 0.8;
+}
+
+/* Alert panels */
+.alert-panel {
+    padding: 16px;
+    border-radius: 8px;
+    margin: 16px 0;
+}
+
+.alert-panel.success {
+    background-color: #d1fae5;
+    border-left: 4px solid var(--success);
+}
+
+.alert-panel.warning {
+    background-color: #fef3c7;
+    border-left: 4px solid var(--warning);
+}
+
+.alert-panel.error {
+    background-color: #fee2e2;
+    border-left: 4px solid var(--danger);
+}
+
+/* Tables */
+.dataframe {
+    font-size: 0.875rem;
+}
+
+.dataframe th {
+    background-color: #f8fafc;
+    font-weight: 600;
+}
+
+/* Sidebar styling */
+[data-testid="stSidebar"] {
+    background-color: #f8fafc;
+}
+
+[data-testid="stSidebar"] .block-container {
+    padding-top: 2rem;
+}
+
+/* Button styling */
+.stButton > button {
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.stButton > button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+/* Expander styling */
+.streamlit-expanderHeader {
+    font-weight: 600;
+    color: var(--primary);
+}
+
+/* Progress bar */
+.stProgress > div > div {
+    background-color: var(--primary);
+}
+
+/* Plotly chart containers */
+.js-plotly-plot {
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    color: #6b7280;
+    font-size: 12px;
+    padding: 20px 0;
+    border-top: 1px solid #e5e7eb;
+    margin-top: 40px;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f5f9;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #94a3b8;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #64748b;
+}

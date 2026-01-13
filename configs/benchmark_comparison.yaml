@@ -1,0 +1,38 @@
+seed: 42
+
+# Test set configuration
+data:
+  dataset: Anthropic/hh-rlhf
+  num_test_samples: 100
+  test_split_size: 1000  # Size of original test split
+  min_length: 10
+  max_length: 256
+
+# Model checkpoints
+models:
+  base: Qwen/Qwen2-0.5B
+  dpo: checkpoints/dpo_model/final
+  ppo: checkpoints/ppo_model/final
+  grpo: checkpoints/grpo_model/final
+  reward_model: checkpoints/reward_model/best
+
+# Generation parameters (same for all models)
+generation:
+  max_new_tokens: 256
+  temperature: 0.7
+  top_p: 0.9
+  do_sample: true
+  num_return_sequences: 1
+
+# Evaluation settings
+evaluation:
+  use_reward_model: true
+  use_llm_judge: true
+  judge_model: google/gemini-2.0-flash-001
+
+# Device
+device: mps
+
+# Output
+output:
+  results_dir: results/experiment_j

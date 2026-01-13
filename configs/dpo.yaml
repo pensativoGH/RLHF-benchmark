@@ -1,0 +1,45 @@
+seed: 42
+
+model:
+  name: Qwen/Qwen2-0.5B
+  lora_rank: 16
+  lora_alpha: 32
+  lora_target_modules:
+    - q_proj
+    - v_proj
+  lora_dropout: 0.05
+
+dpo:
+  beta: 0.1  # KL penalty coefficient
+  loss_type: sigmoid  # sigmoid (default) or hinge
+
+training:
+  batch_size: 2
+  gradient_accumulation_steps: 8
+  learning_rate: 5.0e-6
+  scheduler: cosine
+  epochs: 3
+  max_seq_length: 512
+  device: mps
+  gradient_checkpointing: true
+  warmup_ratio: 0.1
+  weight_decay: 0.01
+  max_grad_norm: 1.0
+
+data:
+  dataset: Anthropic/hh-rlhf
+  num_samples: 2000
+  train_split: 0.8
+  val_split: 0.1
+  test_split: 0.1
+  min_length: 10
+  max_length: 512
+
+logging:
+  log_every_n_steps: 50
+  eval_every_n_steps: 200
+  save_every_n_steps: 500
+
+output:
+  checkpoint_dir: checkpoints/dpo_model
+  results_dir: results/m2_dpo
