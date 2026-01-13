@@ -1,12 +1,52 @@
-# RLCode Experiment Spec
+# RLHF-benchmark
+
+## Repository
+
+| Field | Value |
+|-------|-------|
+| **GitHub** | https://github.com/pensativoGH/RLHF-benchmark |
+| **Clone** | `git clone https://github.com/pensativoGH/RLHF-benchmark.git` |
 
 ## Overview
 
-Reinforcement Learning experiments for LLM training and alignment.
+Reinforcement Learning experiments for LLM training and alignment, comparing three alignment methods:
+- **DPO** (Direct Preference Optimization)
+- **PPO** (Proximal Policy Optimization)
+- **GRPO** (Group Relative Policy Optimization)
 
-- **Environment:** Mac (Apple Silicon MPS)
-- **Base Model:** Qwen2-0.5B
-- **Primary Dataset:** Anthropic HH-RLHF (10k sample subset)
+| Field | Value |
+|-------|-------|
+| **Environment** | Mac (Apple Silicon MPS) |
+| **Base Model** | Qwen2-0.5B |
+| **Dataset** | Anthropic HH-RLHF (10k sample subset) |
+| **Framework** | PyTorch, Transformers, TRL, PEFT |
+
+## Quick Start
+
+```bash
+# Clone the repository
+git clone https://github.com/pensativoGH/RLHF-benchmark.git
+cd RLHF-benchmark
+
+# Setup environment
+python -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+
+# Train reward model (M1)
+python scripts/train_reward_model.py --config configs/reward_model.yaml
+
+# Train alignment methods (M2-M4)
+python scripts/train_dpo.py --config configs/dpo.yaml
+python scripts/train_ppo.py --config configs/ppo.yaml
+python scripts/train_grpo.py --config configs/grpo.yaml
+
+# Run benchmark comparison
+python scripts/run_benchmark_comparison.py --config configs/benchmark_comparison.yaml
+
+# Launch dashboard
+streamlit run dashboard/app.py
+```
 
 ## Summary
 
