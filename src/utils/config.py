@@ -63,11 +63,13 @@ class PPOConfig:
 @dataclass
 class GRPOConfig:
     learning_rate: float = 1e-5
-    group_size: int = 4  # Number of responses per prompt
-    beta: float = 0.1  # Regularization coefficient (optional KL penalty)
-    use_kl_penalty: bool = False  # Whether to use KL penalty to reference
+    group_size: int = 8  # Number of responses per prompt (increased from 4)
+    beta: float = 0.1  # Regularization coefficient (KL penalty strength)
+    use_kl_penalty: bool = True  # Whether to use KL penalty to reference
     clip_range: float = 0.2  # Policy gradient clip range
     normalize_rewards: bool = True  # Normalize rewards within group
+    target_kl: float = 0.1  # Target KL for adaptive coefficient adjustment
+    init_kl_coef: float = 0.1  # Initial KL coefficient
 
 
 @dataclass

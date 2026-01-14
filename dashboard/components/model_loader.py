@@ -146,6 +146,14 @@ def load_results_data():
     with open(results_dir / "full_results.json", 'r') as f:
         data["full_results"] = json.load(f)
 
+    # Load new GRPO comparison results if available
+    new_grpo_path = results_dir / "new_grpo_comparison.json"
+    if new_grpo_path.exists():
+        with open(new_grpo_path, 'r') as f:
+            data["new_grpo"] = json.load(f)
+    else:
+        data["new_grpo"] = None
+
     return data
 
 

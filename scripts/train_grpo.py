@@ -164,6 +164,7 @@ def normalize_rewards(
     """Normalize rewards within each group (zero mean, unit variance).
 
     This is the key to GRPO - relative rewards within groups.
+    Uses rank-based advantages when variance is too low to avoid zero gradients.
     """
     normalized = []
 
@@ -173,14 +174,119 @@ def normalize_rewards(
         std = group_arr.std()
 
         if std < epsilon:
-            # If all rewards are same, use zero advantages
-            normalized_group = [0.0] * len(group_rewards)
+            # Use rank-based advantages instead of zeros to preserve gradient signal
+            n = len(group_arr)
+            if n > 1:
+                # Get ranks (0 to n-1) and map to [-1, 1] range
+                ranks = np.argsort(np.argsort(group_arr)).astype(float)
+                normalized_group = ((2.0 * ranks / (n - 1)) - 1.0).tolist()
+            else:
+                normalized_group = [0.0]
         else:
             normalized_group = ((group_arr - mean) / (std + epsilon)).tolist()
 
         normalized.append(normalized_group)
 
     return normalized
+
+
+def compute_kl_penalty(
+    model: nn.Module,
+    ref_model: nn.Module,
+    prompts: List[str],
+    responses: List[List[str]],
+    tokenizer: AutoTokenizer,
+    device: str,
+) -> float:
+    """Compute KL divergence from reference model.
+
+    Returns the mean KL divergence per token across all responses.
+    Memory-optimized: processes one response at a time with explicit cleanup.
+    """
+    total_kl = 0.0
+    num_tokens = 0
+
+    model.eval()
+    with torch.no_grad():
+        for prompt, group_responses in zip(prompts, responses):
+            for response in group_responses:
+                full_text = prompt + response
+                encoding = tokenizer(
+                    full_text,
+                    return_tensors="pt",
+                    truncation=True,
+                    max_length=256,  # Reduced for memory
+                ).to(device)
+
+                prompt_enc = tokenizer(
+                    prompt,
+                    return_tensors="pt",
+                    truncation=True,
+                    max_length=128,
+                ).to(device)
+                prompt_len = prompt_enc["input_ids"].shape[1]
+
+                # Get logits from policy model
+                policy_outputs = model(**encoding, return_dict=True)
+                policy_logits = policy_outputs.logits[0, prompt_len - 1:-1, :].clone()
+                del policy_outputs
+
+                # Get logits from reference model
+                ref_outputs = ref_model(**encoding, return_dict=True)
+                ref_logits = ref_outputs.logits[0, prompt_len - 1:-1, :].clone()
+                del ref_outputs
+
+                if len(policy_logits) == 0:
+                    del policy_logits, ref_logits, encoding, prompt_enc
+                    continue
+
+                # Compute KL divergence token by token to save memory
+                # Using approximation: KL ≈ (log_p - log_q) for sampled tokens
+                # This is more memory efficient than full softmax
+                response_ids = encoding["input_ids"][0, prompt_len:]
+                min_len = min(len(policy_logits), len(response_ids))
+
+                if min_len > 0:
+                    policy_lp = F.log_softmax(policy_logits[:min_len], dim=-1)
+                    ref_lp = F.log_softmax(ref_logits[:min_len], dim=-1)
+
+                    # Get log probs for actual tokens only (memory efficient)
+                    token_ids = response_ids[:min_len]
+                    policy_token_lp = torch.gather(policy_lp, 1, token_ids.unsqueeze(1)).squeeze(1)
+                    ref_token_lp = torch.gather(ref_lp, 1, token_ids.unsqueeze(1)).squeeze(1)
+
+                    # Approximate KL using sampled tokens
+                    kl = (policy_token_lp - ref_token_lp).clamp(min=0)  # Non-negative KL
+                    total_kl += kl.sum().item()
+                    num_tokens += min_len
+
+                    del policy_lp, ref_lp, policy_token_lp, ref_token_lp, kl
+
+                del policy_logits, ref_logits, encoding, prompt_enc
+
+                # Clear MPS cache periodically
+                if device == "mps" and hasattr(torch.mps, 'empty_cache'):
+                    torch.mps.empty_cache()
+
+    model.train()
+    mean_kl = total_kl / max(1, num_tokens)
+    return mean_kl
+
+
+def adjust_kl_coef(current_kl: float, target_kl: float, kl_coef: float) -> float:
+    """Adaptively adjust KL coefficient based on current vs target KL.
+
+    Mirrors PPO's adaptive KL penalty strategy:
+    - If KL > 1.5 * target: increase penalty (policy drifting too fast)
+    - If KL < 0.5 * target: decrease penalty (can be more aggressive)
+    """
+    if current_kl > target_kl * 1.5:
+        # KL too high, increase penalty to constrain policy
+        return min(kl_coef * 1.5, 1.0)
+    elif current_kl < target_kl * 0.5:
+        # KL too low, decrease penalty to allow more exploration
+        return max(kl_coef / 1.5, 0.01)
+    return kl_coef
 
 
 def compute_grpo_loss(
@@ -485,6 +591,21 @@ def train(config_path: str) -> None:
     )
     reward_model.eval()
 
+    # Load reference model for KL penalty (if enabled)
+    ref_model = None
+    if config.grpo.use_kl_penalty:
+        print("Loading reference model for KL penalty...")
+        ref_model = AutoModelForCausalLM.from_pretrained(
+            config.model.name,
+            trust_remote_code=True,
+            torch_dtype=torch.float32,
+        )
+        ref_model = ref_model.to(config.training.device)
+        ref_model.eval()
+        for param in ref_model.parameters():
+            param.requires_grad = False
+        print("  Reference model loaded (frozen)")
+
     # Setup optimizer
     optimizer = AdamW(
         model.parameters(),
@@ -506,6 +627,9 @@ def train(config_path: str) -> None:
     print(f"  Clip range: {config.grpo.clip_range}")
     print(f"  Normalize rewards: {config.grpo.normalize_rewards}")
     print(f"  Use KL penalty: {config.grpo.use_kl_penalty}")
+    if config.grpo.use_kl_penalty:
+        print(f"  Target KL: {config.grpo.target_kl}")
+        print(f"  Initial KL coef: {config.grpo.init_kl_coef}")
     print(f"  Batch size: {config.training.batch_size}")
     print(f"  Gradient accumulation: {config.training.gradient_accumulation_steps}")
     print(f"  Total steps: {total_steps}")
@@ -517,6 +641,9 @@ def train(config_path: str) -> None:
     training_history = []
     group_stats_history = []
     diversity_history = []
+
+    # Initialize adaptive KL coefficient
+    kl_coef = config.grpo.init_kl_coef if config.grpo.use_kl_penalty else 0.0
 
     print("\nStarting GRPO training...")
 
@@ -569,6 +696,32 @@ def train(config_path: str) -> None:
                 device=config.training.device,
             )
 
+            # Compute and add KL penalty if enabled (only at gradient accumulation boundaries for speed)
+            mean_kl = 0.0
+            kl_penalty = 0.0
+            compute_kl_this_step = (
+                config.grpo.use_kl_penalty
+                and ref_model is not None
+                and (batch_idx + 1) % config.training.gradient_accumulation_steps == 0
+            )
+            if compute_kl_this_step:
+                # Use subset of responses (first 2 per prompt) for speed
+                subset_responses = [[r[:2] if len(r) > 2 else r for r in responses][0]]
+                mean_kl = compute_kl_penalty(
+                    model=model,
+                    ref_model=ref_model,
+                    prompts=prompts[:1],  # Just first prompt
+                    responses=subset_responses,
+                    tokenizer=tokenizer,
+                    device=config.training.device,
+                )
+                kl_penalty = kl_coef * mean_kl
+                # Add KL penalty to loss (scaled by accumulation steps since computed once per acc step)
+                loss = loss + kl_penalty * config.training.gradient_accumulation_steps
+                step_metrics["kl_divergence"] = mean_kl
+                step_metrics["kl_coef"] = kl_coef
+                step_metrics["kl_penalty"] = kl_penalty
+
             # Scale loss for gradient accumulation
             scaled_loss = loss / config.training.gradient_accumulation_steps
             scaled_loss.backward()
@@ -600,13 +753,23 @@ def train(config_path: str) -> None:
 
                 global_step += 1
 
+                # Adaptive KL coefficient adjustment
+                if config.grpo.use_kl_penalty:
+                    recent_kl = epoch_metrics.get("kl_divergence", [0])[-config.training.gradient_accumulation_steps:]
+                    if recent_kl:
+                        avg_recent_kl = np.mean(recent_kl)
+                        kl_coef = adjust_kl_coef(avg_recent_kl, config.grpo.target_kl, kl_coef)
+
                 # Update progress bar
                 current_lr = optimizer.param_groups[0]["lr"]
-                progress_bar.set_postfix({
+                postfix = {
                     "loss": f"{np.mean(epoch_metrics['loss'][-config.training.gradient_accumulation_steps:]):.4f}",
                     "reward": f"{np.mean(epoch_metrics['mean_reward'][-config.training.gradient_accumulation_steps:]):.4f}",
                     "lr": f"{current_lr:.2e}",
-                })
+                }
+                if config.grpo.use_kl_penalty:
+                    postfix["kl"] = f"{np.mean(epoch_metrics.get('kl_divergence', [0])[-config.training.gradient_accumulation_steps:]):.3f}"
+                progress_bar.set_postfix(postfix)
 
                 # Log metrics
                 if global_step % config.logging.log_every_n_steps == 0:
@@ -619,6 +782,11 @@ def train(config_path: str) -> None:
                         "learning_rate": current_lr,
                         "grad_norm": grad_norm.item(),
                     }
+                    # Add KL penalty metrics if enabled
+                    if config.grpo.use_kl_penalty:
+                        log_metrics["kl_divergence"] = np.mean(epoch_metrics.get("kl_divergence", [0])[-config.training.gradient_accumulation_steps:])
+                        log_metrics["kl_coef"] = kl_coef
+                        log_metrics["kl_penalty"] = np.mean(epoch_metrics.get("kl_penalty", [0])[-config.training.gradient_accumulation_steps:])
                     metrics_logger.log(global_step, log_metrics, phase="train", epoch=epoch + 1)
 
                     training_history.append({
