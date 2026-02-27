@@ -10,3 +10,4 @@ matplotlib
 scikit-learn
 pyyaml
 tqdm
+requests

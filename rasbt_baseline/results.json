@@ -1,0 +1,910 @@
+{
+  "total": 100,
+  "correct": 16,
+  "accuracy": 0.16,
+  "format_compliant": 79,
+  "format_compliance_rate": 0.79,
+  "avg_tokens": 59.5,
+  "results": [
+    {
+      "unique_id": "test/precalculus/807.json",
+      "subject": "Precalculus",
+      "level": "2",
+      "ground_truth": "\\left( 3, \\frac{\\pi}{2} \\right)",
+      "extracted": "(3,\\frac{\\pi}{2})",
+      "is_correct": false,
+      "has_boxed": true
+    },
+    {
+      "unique_id": "test/intermediate_algebra/1994.json",
+      "subject": "Intermediate Algebra",
+      "level": "5",
+      "ground_truth": "p - q",
+      "extracted": "p^2 - 2pq + q^2",
+      "is_correct": false,
+      "has_boxed": true
+    },
+    {
+      "unique_id": "test/algebra/2584.json",
+      "subject": "Algebra",
+      "level": "3",
+      "ground_truth": "\\frac{14}{3}",
+      "extracted": "\\frac{1}{2}",
+      "is_correct": false,
+      "has_boxed": true
+    },
+    {
+      "unique_id": "test/number_theory/572.json",
+      "subject": "Number Theory",
+      "level": "3",
+      "ground_truth": "9",
+      "extracted": null,
+      "is_correct": false,
+      "has_boxed": false
+    },
+    {
+      "unique_id": "test/algebra/1349.json",
+      "subject": "Algebra",
+      "level": "2",
+      "ground_truth": "\\text{Evelyn}",
+      "extracted": null,
+      "is_correct": false,
+      "has_boxed": false
+    },
+    {
+      "unique_id": "test/prealgebra/1622.json",
+      "subject": "Prealgebra",
+      "level": "2",
+      "ground_truth": "42",
+      "extracted": "126",
+      "is_correct": false,
+      "has_boxed": true
+    },
+    {
+      "unique_id": "test/number_theory/515.json",
+      "subject": "Number Theory",
+      "level": "3",
+      "ground_truth": "27",
+      "extracted": null,
+      "is_correct": false,
+      "has_boxed": false
+    },
+    {
+      "unique_id": "test/precalculus/927.json",
+      "subject": "Precalculus",
+      "level": "4",
+      "ground_truth": "90^\\circ",
+      "extracted": null,
+      "is_correct": false,
+      "has_boxed": false
+    },
+    {
+      "unique_id": "test/algebra/2036.json",
+      "subject": "Algebra",
+      "level": "3",
+      "ground_truth": "3\\sqrt{13}",
+      "extracted": "3\\sqrt{13}",
+      "is_correct": true,
+      "has_boxed": true
+    },
+    {
+      "unique_id": "test/prealgebra/1139.json",
+      "subject": "Prealgebra",
+      "level": "5",
+      "ground_truth": "4",
+      "extracted": null,
+      "is_correct": false,
+      "has_boxed": false
+    },
+    {
+      "unique_id": "test/number_theory/1032.json",
+      "subject": "Number Theory",
+      "level": "3",
+      "ground_truth": "2220",
+      "extracted": "2220",
+      "is_correct": true,
+      "has_boxed": true
+    },
+    {
+      "unique_id": "test/intermediate_algebra/1197.json",
+      "subject": "Intermediate Algebra",
+      "level": "5",
+      "ground_truth": "\\frac{3}{56}",
+      "extracted": "16",
+      "is_correct": false,
+      "has_boxed": true
+    },
+    {
+      "unique_id": "test/number_theory/737.json",
+      "subject": "Number Theory",
+      "level": "5",
+      "ground_truth": "284",
+      "extracted": null,
+      "is_correct": false,
+      "has_boxed": false
+    },
+    {
+      "unique_id": "test/geometry/248.json",
+      "subject": "Geometry",
+      "level": "2",
+      "ground_truth": "5",
+      "extracted": "5",
+      "is_correct": true,
+      "has_boxed": true
+    },
+    {
+      "unique_id": "test/precalculus/1303.json",
+      "subject": "Precalculus",
+      "level": "1",
+      "ground_truth": "\\sqrt{51}",
+      "extracted": "7",
+      "is_correct": false,
+      "has_boxed": true
+    },
+    {
+      "unique_id": "test/precalculus/990.json",
+      "subject": "Precalculus",
+      "level": "5",
+      "ground_truth": "6 - 5i",
+      "extracted": "2 - 3i",
+      "is_correct": false,
+      "has_boxed": true
+    },
+    {
+      "unique_id": "test/intermediate_algebra/134.json",
+      "subject": "Intermediate Algebra",
+      "level": "1",
+      "ground_truth": "-50",
+      "extracted": "100",
+      "is_correct": false,
+      "has_boxed": true
+    },
+    {
+      "unique_id": "test/precalculus/1199.json",
+      "subject": "Precalculus",
+      "level": "4",
+      "ground_truth": "\\pi",
+      "extracted": "0",
+      "is_correct": false,
+      "has_boxed": true
+    },
+    {
+      "unique_id": "test/geometry/434.json",
+      "subject": "Geometry",
+      "level": "1",
+      "ground_truth": "28",
+      "extracted": "56",
+      "is_correct": false,
+      "has_boxed": true
+    },
+    {
+      "unique_id": "test/intermediate_algebra/1000.json",
+      "subject": "Intermediate Algebra",
+      "level": "3",
+      "ground_truth": "3",
+      "extracted": "1",
+      "is_correct": false,
+      "has_boxed": true
+    },
+    {
+      "unique_id": "test/algebra/1098.json",
+      "subject": "Algebra",
+      "level": "3",
+      "ground_truth": "6+9i",
+      "extracted": "15+15i",
+      "is_correct": false,
+      "has_boxed": true
+    },
+    {
+      "unique_id": "test/intermediate_algebra/607.json",
+      "subject": "Intermediate Algebra",
+      "level": "3",
+      "ground_truth": "13535",
+      "extracted": "125",
+      "is_correct": false,
+      "has_boxed": true
+    },
+    {
+      "unique_id": "test/algebra/1837.json",
+      "subject": "Algebra",
+      "level": "5",
+      "ground_truth": "5",
+      "extracted": "2",
+      "is_correct": false,
+      "has_boxed": true
+    },
+    {
+      "unique_id": "test/algebra/2193.json",
+      "subject": "Algebra",
+      "level": "5",
+      "ground_truth": "x=5",
+      "extracted": "\\text{No real solutions}",
+      "is_correct": false,
+      "has_boxed": true
+    },
+    {
+      "unique_id": "test/algebra/2427.json",
+      "subject": "Algebra",
+      "level": "5",
+      "ground_truth": "10",
+      "extracted": "12.5",
+      "is_correct": false,
+      "has_boxed": true
+    },
+    {
+      "unique_id": "test/intermediate_algebra/1388.json",
+      "subject": "Intermediate Algebra",
+      "level": "5",
+      "ground_truth": "1,-2",
+      "extracted": null,
+      "is_correct": false,
+      "has_boxed": false
+    },
+    {
+      "unique_id": "test/counting_and_probability/525.json",
+      "subject": "Counting & Probability",
+      "level": "5",
+      "ground_truth": "144",
+      "extracted": "120",
+      "is_correct": false,
+      "has_boxed": true
+    },
+    {
+      "unique_id": "test/prealgebra/1840.json",
+      "subject": "Prealgebra",
+      "level": "2",
+      "ground_truth": "78",
+      "extracted": "100",
+      "is_correct": false,
+      "has_boxed": true
+    },
+    {
+      "unique_id": "test/precalculus/779.json",
+      "subject": "Precalculus",
+      "level": "2",
+      "ground_truth": "-2 + 7i",
+      "extracted": "29 + 14i",
+      "is_correct": false,
+      "has_boxed": true
+    },
+    {
+      "unique_id": "test/counting_and_probability/666.json",
+      "subject": "Counting & Probability",
+      "level": "2",
+      "ground_truth": "225",
+      "extracted": null,
+      "is_correct": false,
+      "has_boxed": false
+    },
+    {
+      "unique_id": "test/number_theory/864.json",
+      "subject": "Number Theory",
+      "level": "3",
+      "ground_truth": "52_8",
+      "extracted": "52_8",
+      "is_correct": true,
+      "has_boxed": true
+    },
+    {
+      "unique_id": "test/prealgebra/1302.json",
+      "subject": "Prealgebra",
+      "level": "4",
+      "ground_truth": "11\\sqrt2",
+      "extracted": "15.55",
+      "is_correct": false,
+      "has_boxed": true
+    },
+    {
+      "unique_id": "test/counting_and_probability/134.json",
+      "subject": "Counting & Probability",
+      "level": "4",
+      "ground_truth": "720",
+      "extracted": null,
+      "is_correct": false,
+      "has_boxed": false
+    },
+    {
+      "unique_id": "test/algebra/1072.json",
+      "subject": "Algebra",
+      "level": "4",
+      "ground_truth": "\\frac{243}{625}",
+      "extracted": "\\frac{1}{27}",
+      "is_correct": false,
+      "has_boxed": true
+    },
+    {
+      "unique_id": "test/counting_and_probability/119.json",
+      "subject": "Counting & Probability",
+      "level": "4",
+      "ground_truth": "-125",
+      "extracted": "125",
+      "is_correct": false,
+      "has_boxed": true
+    },
+    {
+      "unique_id": "test/number_theory/627.json",
+      "subject": "Number Theory",
+      "level": "2",
+      "ground_truth": "3",
+      "extracted": null,
+      "is_correct": false,
+      "has_boxed": false
+    },
+    {
+      "unique_id": "test/intermediate_algebra/428.json",
+      "subject": "Intermediate Algebra",
+      "level": "2",
+      "ground_truth": "3, 5, 7",
+      "extracted": null,
+      "is_correct": false,
+      "has_boxed": false
+    },
+    {
+      "unique_id": "test/geometry/967.json",
+      "subject": "Geometry",
+      "level": "3",
+      "ground_truth": "72",
+      "extracted": "72",
+      "is_correct": true,
+      "has_boxed": true
+    },
+    {
+      "unique_id": "test/algebra/24.json",
+      "subject": "Algebra",
+      "level": "1",
+      "ground_truth": "2000",
+      "extracted": "2500",
+      "is_correct": false,
+      "has_boxed": true
+    },
+    {
+      "unique_id": "test/number_theory/45.json",
+      "subject": "Number Theory",
+      "level": "3",
+      "ground_truth": "23",
+      "extracted": "11",
+      "is_correct": false,
+      "has_boxed": true
+    },
+    {
+      "unique_id": "test/prealgebra/930.json",
+      "subject": "Prealgebra",
+      "level": "2",
+      "ground_truth": "12",
+      "extracted": "12",
+      "is_correct": true,
+      "has_boxed": true
+    },
+    {
+      "unique_id": "test/geometry/627.json",
+      "subject": "Geometry",
+      "level": "4",
+      "ground_truth": "17",
+      "extracted": "10",
+      "is_correct": false,
+      "has_boxed": true
+    },
+    {
+      "unique_id": "test/algebra/2214.json",
+      "subject": "Algebra",
+      "level": "2",
+      "ground_truth": "4",
+      "extracted": "5",
+      "is_correct": false,
+      "has_boxed": true
+    },
+    {
+      "unique_id": "test/intermediate_algebra/1454.json",
+      "subject": "Intermediate Algebra",
+      "level": "5",
+      "ground_truth": "70 \\sqrt{2}",
+      "extracted": null,
+      "is_correct": false,
+      "has_boxed": false
+    },
+    {
+      "unique_id": "test/prealgebra/1558.json",
+      "subject": "Prealgebra",
+      "level": "5",
+      "ground_truth": "1.25",
+      "extracted": "1.5",
+      "is_correct": false,
+      "has_boxed": true
+    },
+    {
+      "unique_id": "test/geometry/178.json",
+      "subject": "Geometry",
+      "level": "3",
+      "ground_truth": "2",
+      "extracted": "\\frac{1}{2}",
+      "is_correct": false,
+      "has_boxed": true
+    },
+    {
+      "unique_id": "test/precalculus/285.json",
+      "subject": "Precalculus",
+      "level": "2",
+      "ground_truth": "6",
+      "extracted": "2",
+      "is_correct": false,
+      "has_boxed": true
+    },
+    {
+      "unique_id": "test/algebra/305.json",
+      "subject": "Algebra",
+      "level": "5",
+      "ground_truth": "5",
+      "extracted": "5",
+      "is_correct": true,
+      "has_boxed": true
+    },
+    {
+      "unique_id": "test/algebra/1265.json",
+      "subject": "Algebra",
+      "level": "2",
+      "ground_truth": "\\frac{3}{2}",
+      "extracted": "\\frac{1}{2}",
+      "is_correct": false,
+      "has_boxed": true
+    },
+    {
+      "unique_id": "test/prealgebra/1388.json",
+      "subject": "Prealgebra",
+      "level": "4",
+      "ground_truth": "83",
+      "extracted": "20",
+      "is_correct": false,
+      "has_boxed": true
+    },
+    {
+      "unique_id": "test/number_theory/1055.json",
+      "subject": "Number Theory",
+      "level": "5",
+      "ground_truth": "203",
+      "extracted": null,
+      "is_correct": false,
+      "has_boxed": false
+    },
+    {
+      "unique_id": "test/intermediate_algebra/1217.json",
+      "subject": "Intermediate Algebra",
+      "level": "2",
+      "ground_truth": "x^5 - x^4 + x^3 - x^2 + x - 1",
+      "extracted": "1",
+      "is_correct": false,
+      "has_boxed": true
+    },
+    {
+      "unique_id": "test/prealgebra/951.json",
+      "subject": "Prealgebra",
+      "level": "5",
+      "ground_truth": "12",
+      "extracted": "\\frac{1}{2}",
+      "is_correct": false,
+      "has_boxed": true
+    },
+    {
+      "unique_id": "test/precalculus/1105.json",
+      "subject": "Precalculus",
+      "level": "2",
+      "ground_truth": "-\\frac{\\pi}{6}",
+      "extracted": "-\\frac{\\pi}{6}",
+      "is_correct": true,
+      "has_boxed": true
+    },
+    {
+      "unique_id": "test/prealgebra/572.json",
+      "subject": "Prealgebra",
+      "level": "2",
+      "ground_truth": "0.15",
+      "extracted": "0.15",
+      "is_correct": true,
+      "has_boxed": true
+    },
+    {
+      "unique_id": "test/algebra/187.json",
+      "subject": "Algebra",
+      "level": "4",
+      "ground_truth": "3",
+      "extracted": "4",
+      "is_correct": false,
+      "has_boxed": true
+    },
+    {
+      "unique_id": "test/algebra/769.json",
+      "subject": "Algebra",
+      "level": "3",
+      "ground_truth": "11",
+      "extracted": "11",
+      "is_correct": true,
+      "has_boxed": true
+    },
+    {
+      "unique_id": "test/intermediate_algebra/1168.json",
+      "subject": "Intermediate Algebra",
+      "level": "2",
+      "ground_truth": "16",
+      "extracted": "16",
+      "is_correct": true,
+      "has_boxed": true
+    },
+    {
+      "unique_id": "test/algebra/722.json",
+      "subject": "Algebra",
+      "level": "1",
+      "ground_truth": "9901",
+      "extracted": "10000",
+      "is_correct": false,
+      "has_boxed": true
+    },
+    {
+      "unique_id": "test/prealgebra/1247.json",
+      "subject": "Prealgebra",
+      "level": "2",
+      "ground_truth": "5",
+      "extracted": null,
+      "is_correct": false,
+      "has_boxed": false
+    },
+    {
+      "unique_id": "test/intermediate_algebra/956.json",
+      "subject": "Intermediate Algebra",
+      "level": "5",
+      "ground_truth": "(6,31,-1)",
+      "extracted": "(0, 0, 1)",
+      "is_correct": false,
+      "has_boxed": true
+    },
+    {
+      "unique_id": "test/intermediate_algebra/1247.json",
+      "subject": "Intermediate Algebra",
+      "level": "3",
+      "ground_truth": "-256",
+      "extracted": null,
+      "is_correct": false,
+      "has_boxed": false
+    },
+    {
+      "unique_id": "test/precalculus/675.json",
+      "subject": "Precalculus",
+      "level": "5",
+      "ground_truth": "4",
+      "extracted": "3",
+      "is_correct": false,
+      "has_boxed": true
+    },
+    {
+      "unique_id": "test/intermediate_algebra/279.json",
+      "subject": "Intermediate Algebra",
+      "level": "5",
+      "ground_truth": "10",
+      "extracted": null,
+      "is_correct": false,
+      "has_boxed": false
+    },
+    {
+      "unique_id": "test/precalculus/1146.json",
+      "subject": "Precalculus",
+      "level": "4",
+      "ground_truth": "\\frac{35}{64}",
+      "extracted": "\\frac{1}{16}",
+      "is_correct": false,
+      "has_boxed": true
+    },
+    {
+      "unique_id": "test/prealgebra/1747.json",
+      "subject": "Prealgebra",
+      "level": "1",
+      "ground_truth": "1",
+      "extracted": "1",
+      "is_correct": true,
+      "has_boxed": true
+    },
+    {
+      "unique_id": "test/algebra/2046.json",
+      "subject": "Algebra",
+      "level": "3",
+      "ground_truth": "x^3+3x-6",
+      "extracted": "x^3 + 5x^2 - 6x - 6",
+      "is_correct": false,
+      "has_boxed": true
+    },
+    {
+      "unique_id": "test/prealgebra/1233.json",
+      "subject": "Prealgebra",
+      "level": "4",
+      "ground_truth": "10",
+      "extracted": "20\\%",
+      "is_correct": false,
+      "has_boxed": true
+    },
+    {
+      "unique_id": "test/precalculus/1313.json",
+      "subject": "Precalculus",
+      "level": "4",
+      "ground_truth": "46",
+      "extracted": null,
+      "is_correct": false,
+      "has_boxed": false
+    },
+    {
+      "unique_id": "test/intermediate_algebra/207.json",
+      "subject": "Intermediate Algebra",
+      "level": "4",
+      "ground_truth": "-1",
+      "extracted": "2",
+      "is_correct": false,
+      "has_boxed": true
+    },
+    {
+      "unique_id": "test/number_theory/46.json",
+      "subject": "Number Theory",
+      "level": "2",
+      "ground_truth": "40_9",
+      "extracted": "40_9",
+      "is_correct": true,
+      "has_boxed": true
+    },
+    {
+      "unique_id": "test/number_theory/516.json",
+      "subject": "Number Theory",
+      "level": "4",
+      "ground_truth": "2516_8",
+      "extracted": "2516_{8}",
+      "is_correct": true,
+      "has_boxed": true
+    },
+    {
+      "unique_id": "test/geometry/456.json",
+      "subject": "Geometry",
+      "level": "2",
+      "ground_truth": "3",
+      "extracted": "1",
+      "is_correct": false,
+      "has_boxed": true
+    },
+    {
+      "unique_id": "test/algebra/2253.json",
+      "subject": "Algebra",
+      "level": "4",
+      "ground_truth": "\\frac{3\\sqrt{3}}{4}",
+      "extracted": "\\frac{11}{7}",
+      "is_correct": false,
+      "has_boxed": true
+    },
+    {
+      "unique_id": "test/precalculus/24313.json",
+      "subject": "Precalculus",
+      "level": "2",
+      "ground_truth": "\\cot x",
+      "extracted": "\\frac{\\sec x - \\sin x}{\\cos x}",
+      "is_correct": false,
+      "has_boxed": true
+    },
+    {
+      "unique_id": "test/counting_and_probability/1114.json",
+      "subject": "Counting & Probability",
+      "level": "4",
+      "ground_truth": "\\frac{11}{36}",
+      "extracted": "\\dfrac{4}{9}",
+      "is_correct": false,
+      "has_boxed": true
+    },
+    {
+      "unique_id": "test/intermediate_algebra/623.json",
+      "subject": "Intermediate Algebra",
+      "level": "2",
+      "ground_truth": "0",
+      "extracted": "a + b = 2",
+      "is_correct": false,
+      "has_boxed": true
+    },
+    {
+      "unique_id": "test/algebra/1004.json",
+      "subject": "Algebra",
+      "level": "1",
+      "ground_truth": "4",
+      "extracted": "2",
+      "is_correct": false,
+      "has_boxed": true
+    },
+    {
+      "unique_id": "test/intermediate_algebra/47.json",
+      "subject": "Intermediate Algebra",
+      "level": "4",
+      "ground_truth": "(-2,1)",
+      "extracted": "(0, 1)",
+      "is_correct": false,
+      "has_boxed": true
+    },
+    {
+      "unique_id": "test/prealgebra/192.json",
+      "subject": "Prealgebra",
+      "level": "1",
+      "ground_truth": "2",
+      "extracted": "4",
+      "is_correct": false,
+      "has_boxed": true
+    },
+    {
+      "unique_id": "test/intermediate_algebra/1849.json",
+      "subject": "Intermediate Algebra",
+      "level": "5",
+      "ground_truth": "501",
+      "extracted": "100",
+      "is_correct": false,
+      "has_boxed": true
+    },
+    {
+      "unique_id": "test/algebra/1035.json",
+      "subject": "Algebra",
+      "level": "3",
+      "ground_truth": "3",
+      "extracted": null,
+      "is_correct": false,
+      "has_boxed": false
+    },
+    {
+      "unique_id": "test/algebra/2700.json",
+      "subject": "Algebra",
+      "level": "5",
+      "ground_truth": "\\frac{3}{2}",
+      "extracted": "\\frac{1}{2}",
+      "is_correct": false,
+      "has_boxed": true
+    },
+    {
+      "unique_id": "test/intermediate_algebra/2046.json",
+      "subject": "Intermediate Algebra",
+      "level": "2",
+      "ground_truth": "2",
+      "extracted": "1",
+      "is_correct": false,
+      "has_boxed": true
+    },
+    {
+      "unique_id": "test/algebra/893.json",
+      "subject": "Algebra",
+      "level": "4",
+      "ground_truth": "-1",
+      "extracted": "10",
+      "is_correct": false,
+      "has_boxed": true
+    },
+    {
+      "unique_id": "test/geometry/353.json",
+      "subject": "Geometry",
+      "level": "4",
+      "ground_truth": "\\sqrt{5}",
+      "extracted": "\\sqrt{2}",
+      "is_correct": false,
+      "has_boxed": true
+    },
+    {
+      "unique_id": "test/prealgebra/307.json",
+      "subject": "Prealgebra",
+      "level": "1",
+      "ground_truth": "240",
+      "extracted": "240",
+      "is_correct": true,
+      "has_boxed": true
+    },
+    {
+      "unique_id": "test/algebra/567.json",
+      "subject": "Algebra",
+      "level": "1",
+      "ground_truth": "1",
+      "extracted": "1",
+      "is_correct": true,
+      "has_boxed": true
+    },
+    {
+      "unique_id": "test/algebra/892.json",
+      "subject": "Algebra",
+      "level": "5",
+      "ground_truth": "2",
+      "extracted": "1",
+      "is_correct": false,
+      "has_boxed": true
+    },
+    {
+      "unique_id": "test/number_theory/357.json",
+      "subject": "Number Theory",
+      "level": "4",
+      "ground_truth": "21",
+      "extracted": null,
+      "is_correct": false,
+      "has_boxed": false
+    },
+    {
+      "unique_id": "test/prealgebra/1761.json",
+      "subject": "Prealgebra",
+      "level": "3",
+      "ground_truth": "\\frac{3}{2}",
+      "extracted": null,
+      "is_correct": false,
+      "has_boxed": false
+    },
+    {
+      "unique_id": "test/algebra/2023.json",
+      "subject": "Algebra",
+      "level": "3",
+      "ground_truth": "1",
+      "extracted": "3",
+      "is_correct": false,
+      "has_boxed": true
+    },
+    {
+      "unique_id": "test/counting_and_probability/377.json",
+      "subject": "Counting & Probability",
+      "level": "4",
+      "ground_truth": "\\frac{448}{15625}",
+      "extracted": "0.248",
+      "is_correct": false,
+      "has_boxed": true
+    },
+    {
+      "unique_id": "test/algebra/873.json",
+      "subject": "Algebra",
+      "level": "4",
+      "ground_truth": "33",
+      "extracted": "1",
+      "is_correct": false,
+      "has_boxed": true
+    },
+    {
+      "unique_id": "test/prealgebra/1646.json",
+      "subject": "Prealgebra",
+      "level": "5",
+      "ground_truth": "80",
+      "extracted": "110",
+      "is_correct": false,
+      "has_boxed": true
+    },
+    {
+      "unique_id": "test/precalculus/34.json",
+      "subject": "Precalculus",
+      "level": "2",
+      "ground_truth": "-4",
+      "extracted": "1",
+      "is_correct": false,
+      "has_boxed": true
+    },
+    {
+      "unique_id": "test/intermediate_algebra/662.json",
+      "subject": "Intermediate Algebra",
+      "level": "5",
+      "ground_truth": "1 \\pm \\sqrt{19}",
+      "extracted": null,
+      "is_correct": false,
+      "has_boxed": false
+    },
+    {
+      "unique_id": "test/prealgebra/105.json",
+      "subject": "Prealgebra",
+      "level": "1",
+      "ground_truth": "\\text{east}",
+      "extracted": "north",
+      "is_correct": false,
+      "has_boxed": true
+    },
+    {
+      "unique_id": "test/prealgebra/1924.json",
+      "subject": "Prealgebra",
+      "level": "2",
+      "ground_truth": "2k+2",
+      "extracted": "-k + 2",
+      "is_correct": false,
+      "has_boxed": true
+    },
+    {
+      "unique_id": "test/precalculus/1300.json",
+      "subject": "Precalculus",
+      "level": "3",
+      "ground_truth": "\\begin{pmatrix} -1/3 \\\\ 2/3 \\\\ 5/3 \\end{pmatrix}",
+      "extracted": "\\begin{pmatrix} 1 \\\\ -1 \\\\ 1 \\end{pmatrix}",
+      "is_correct": false,
+      "has_boxed": true
+    }
+  ]
+}
